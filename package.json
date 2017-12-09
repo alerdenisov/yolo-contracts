@@ -1,0 +1,25 @@
+{
+  "name": "yolo-contracts",
+  "version": "1.0.0",
+  "description": "YOLO Project smart-contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alerdenisov/yolo-contracts.git"
+  },
+  "keywords": [
+    "yolo",
+    "solidity",
+    "ethereum",
+    "smart-contracts"
+  ],
+  "author": "Aler Denisov <aler.zampillo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alerdenisov/yolo-contracts/issues"
+  },
+  "homepage": "https://github.com/alerdenisov/yolo-contracts#readme"
+}
