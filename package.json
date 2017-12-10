@@ -28,10 +28,20 @@
     "url": "https://github.com/alerdenisov/yolo-contracts/issues"
   },
   "homepage": "https://github.com/alerdenisov/yolo-contracts#readme",
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "dependencies": {
     "element-ui": "^2.0.4",
     "ethereumjs-wallet": "^0.6.0",
     "ipfs-api": "^17.1.0",
+    "normalize.css": "^7.0.0",
     "vue": "^2.5.3",
     "vue-async-computed": "^3.3.1",
     "vue-router": "^2.8.1",
