@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/containers/pages/Home'
 import SignUp from '@/containers/pages/SignUp'
-import Ideas from '@/containers/pages/Ideas'
+import Projects from '@/containers/pages/Projects'
 import Submit from '@/containers/pages/Submit'
 
 Vue.use(Router)
@@ -28,9 +28,9 @@ export default new Router({
     },
     {
       ...base,
-      path: '/ideas',
-      name: 'Ideas',
-      component: Ideas
+      path: '/projects',
+      name: 'Projects',
+      component: Projects
     },
     {
       ...base,

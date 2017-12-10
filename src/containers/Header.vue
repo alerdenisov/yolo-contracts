@@ -4,8 +4,8 @@
       el-menu-item.a-menu__item.menu-item(index="1" route="/") 
         strong YOLO
         span .place
-      el-menu-item.a-menu__item.menu-item(index="8" route="/ideas") Ideas
-      el-menu-item.a-menu__item.menu-item(index="2" route="/submit") Submit Idea
+      el-menu-item.a-menu__item.menu-item(index="8" route="/projects") Projects
+      el-menu-item.a-menu__item.menu-item(index="2" route="/submit") Submit Project
       .a-menu__divider
       el-menu-item.a-menu__item.menu-item(index="4" route="/sign-up" v-if="!user.isLoggedIn") Sign Up
       el-menu-item.a-menu__item.menu-item(index="5" route="/profile/edit" v-if="user.isLoggedIn") Edit Profile

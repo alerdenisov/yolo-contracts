@@ -41,6 +41,7 @@
     "element-ui": "^2.0.4",
     "ethereumjs-wallet": "^0.6.0",
     "ipfs-api": "^17.1.0",
+    "marked": "^0.3.7",
     "normalize.css": "^7.0.0",
     "vue": "^2.5.3",
     "vue-async-computed": "^3.3.1",

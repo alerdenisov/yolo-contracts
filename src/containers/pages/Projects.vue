@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'ideas',
+  name: 'projects',
   props: ['user']
 }
 </script>
