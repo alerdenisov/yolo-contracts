@@ -12,9 +12,10 @@ contract IdeaFactory is IRegistry {
     creator = msg.sender;
   }
 
-  function CreateIdea(string name, string ticker) public returns (address) {
-    IdeaDAO idea = new IdeaDAO(msg.sender, name, ticker);
-    addInstance(idea);
+  function createIdea(string name, string ticker, bytes32 meta) public returns (address) {
+    IdeaDAO idea = new IdeaDAO(msg.sender, name, ticker, meta);
+    idea.addOwner(msg.sender);
+    addInstance(msg.sender, idea);
     NewIdea(msg.sender, idea);
   }  
 

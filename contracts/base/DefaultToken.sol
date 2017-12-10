@@ -11,16 +11,17 @@ contract DefaultToken is IToken {
     string _name,
     string _ticker,
     uint _decimals,
-    uint _initialSupply
+    uint _initialSupply,
+    address _holder
   ) public {
     name = _name;
     ticker = _ticker;
     decimals = _decimals;
 
-    if (_initialSupply > 0) {
+    if (_initialSupply > 0 && _holder != address(0x0)) {
       totalSupply = _initialSupply;
-      balances[msg.sender] = _initialSupply;
-      Transfer(address(0x0), msg.sender, _initialSupply);
+      balances[_holder] = _initialSupply;
+      Transfer(address(0x0), _holder, _initialSupply);
     }
   }
 

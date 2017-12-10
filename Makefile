@@ -1,7 +1,7 @@
 NETWORK:= "testrpc"
 TEST:=    ""
 
-.PHONY: install clean
+.PHONY: install clean test compile recompile
 
 clean:
 	@echo "Cleaning Project Builds"
@@ -14,6 +14,9 @@ compile:
 	# Merge files here:
 	# @sol-merger <path-to-source> /merged
 
+recompile: clean compile
+	@echo Done
+
 migrate: compile
 	@echo "Begin migrate to $(value NETWORK)"
 	@$(shell pwd)/node_modules/.bin/truffle migrate --network=$(value NETWORK)
@@ -25,8 +28,8 @@ migrateHard: clean compile
 install:
 	npm install
 
-test: compile
-	@$(shell pwd)/node_modules/.bin/truffle --network=$(value NETWORK) test $(value TEST)
+test:
+	@$(shell pwd)/node_modules/.bin/truffle --network=$(value NETWORK) test
 
 link: compile
 	@$(shell pwd)/node_modules/.bin/remixd -S $(shell pwd)/merged
