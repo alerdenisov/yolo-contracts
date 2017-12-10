@@ -1,7 +1,7 @@
 NETWORK:= "testrpc"
 TEST:=    ""
 
-.PHONY: install clean test compile recompile
+.PHONY: install clean test compile recompile dev
 
 clean:
 	@echo "Cleaning Project Builds"
@@ -26,10 +26,13 @@ migrateHard: clean compile
 	@$(shell pwd)/node_modules/.bin/truffle migrate --reset --network=$(value NETWORK)
 
 install:
-	npm install
+	@npm install
 
 test:
 	@$(shell pwd)/node_modules/.bin/truffle --network=$(value NETWORK) test
+
+dev:
+	@npm run dev
 
 link: compile
 	@$(shell pwd)/node_modules/.bin/remixd -S $(shell pwd)/merged
