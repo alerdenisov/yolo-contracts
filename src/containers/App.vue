@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 body {
   margin: 0;
   width: 100%;
@@ -108,6 +108,116 @@ a {
 
 .el-header {
   padding: 0;
+}
+
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  &-item {
+    margin-left: 20px;
+    &:nth-child(1) { margin-left: 0; }
+    &_grow {
+      flex-grow: 1;
+    }
+    &_non-grow {
+      flex-grow: 0;
+    }
+
+    &_shrink {
+      flex-shrink: 1;
+    }
+    &_non-shrink {
+      flex-shrink: 0;
+    }
+  }
+}
+
+
+.a {
+  &-flex {
+    display: flex;
+    align-items: center;
+
+    &__item {
+      &_space {
+        &-left { margin-left: auto }
+        &-right { margin-right: auto }
+      }
+    }
+  }
+  &-image {
+    &_responsive {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  &-card {
+    &__image {
+      display: block;
+      &-holder { 
+        overflow: hidden;
+      }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  &-assets-list {
+    &__asset { margin-bottom: 40px; }
+  }
+
+  &-label {
+    &_code {
+      font-family: monospace;
+      background-color: #EDF2FC;
+    }
+    &_no-wrap { white-space: nowrap }
+  }
+  &-flex {
+    display: flex;
+    align-items: center;
+
+    &__item {
+      &_space {
+        &-left { margin-left: auto }
+        &-right { margin-right: auto }
+      }
+    }
+  }
+  &-m,
+  &-margin {
+    &_right,
+    &_r {
+      &_10 { margin-right: 10px }
+      &_20 { margin-right: 20px }
+      &_30 { margin-right: 30px }
+      &_40 { margin-right: 40px }
+      &_50 { margin-right: 50px }
+    }
+    &_left,
+    &_l {
+      &_10 { margin-left: 10px }
+      &_20 { margin-left: 20px }
+      &_30 { margin-left: 30px }
+      &_40 { margin-left: 40px }
+      &_50 { margin-left: 50px }
+    }
+    &_bottom,
+    &_b {
+      &_10 { margin-bottom: 10px }
+      &_20 { margin-bottom: 20px }
+      &_30 { margin-bottom: 30px }
+      &_40 { margin-bottom: 40px }
+      &_50 { margin-bottom: 50px }
+    }
+  }
 }
 </style>
 

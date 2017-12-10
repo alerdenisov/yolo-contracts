@@ -29,6 +29,12 @@ export default {
     async logUserIn () {
       const user = await Auth.login(this.$store.state)
       this[ACTION_TYPES.LOGIN](user)
+
+      if (!this.user.isLoggedIn) {
+        this.$router.push('/')
+      } else {
+        this.$router.push('/projects')
+      }
     },
 
     logUserOut () {},
