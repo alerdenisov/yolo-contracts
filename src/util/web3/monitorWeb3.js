@@ -18,45 +18,44 @@ const monitorWeb3 = function (state) {
     isLocalWeb3 = true
   }
 
-  if (web3) {
-    web3.eth.filter('latest', function (error, result) {
-      if (!error) {
-        // console.log(result)
-      }
-    })
+  // if (web3) {
+  //   web3.eth.filter('latest', function (error, result) {
+  //     if (!error) {
+  //       // console.log(result)
+  //     }
+  //   })
 
-    web3.eth.filter('pending', function (error, result) {
-      if (!error) {
-        // console.log(result)
-      }
-    })
-  }
+  //   web3.eth.filter('pending', function (error, result) {
+  //     if (!error) {
+  //       // console.log(result)
+  //     }
+  //   })
+  // }
 
-  setInterval(() => {
-    if (web3 && !isLocalWeb3) {
-      web3.version.getNetwork((err, newNetworkId) => {
-        newNetworkId = !err && newNetworkId ? newNetworkId.toString() : ''
-        if ((!err && newNetworkId && newNetworkId !== '' && newNetworkId !== networkId) || (!newNetworkId && networkId)) {
-          store.dispatch(ACTION_TYPES.LOGOUT)
-          window.location.reload()
-        } else {
-          web3.eth.getCoinbase((err, newCoinbase) => {
-            newCoinbase = !err && newCoinbase ? newCoinbase.toString() : ''
-            if ((!err && newCoinbase && newCoinbase !== '' && newCoinbase !== coinbase && newNetworkId === APPROVED_NETWORK_ID) || (!newCoinbase && coinbase)) {
-              store.dispatch(ACTION_TYPES.LOGOUT)
-              window.location.reload()
-            } else if (!err && newCoinbase && newCoinbase !== '' && newCoinbase !== coinbase) {
-              coinbase = newCoinbase
-              store.dispatch(ACTION_TYPES.UPDATE_WEB3_PROPERTIES, {
-                properties: ['coinbase'],
-                values: [ newCoinbase ]
-              })
-            }
-          })
-        }
-      })
-    }
-  }, 666)
+  // setInterval(async () => {
+  //   if (!web3 || isLocalWeb3) {
+  //     return
+  //   }
+
+  //   const id = await web3.eth.getId()
+  //   if(id !== networkId) {
+  //     store.dispatch(ACTION_TYPES.LOGOUT)
+  //     window.location.reload()
+  //   } 
+    
+  //   const newCoinbase = await web.eth.getCoinbase()
+  //   if(newCoinbase !== coinbase) {
+  //     if (id === APPROVED_NETWORK_ID) {
+  //       store.dispatch(ACTION_TYPES.UPDATE_WEB3_PROPERTIES, {
+  //         properties: ['coinbase'],
+  //         value: [newCoinbase]
+  //       })
+  //     } else {
+  //       store.dispatch(ACTION_TYPES.LOGOUT)
+  //       window.location.reload()
+  //     }
+  //   }
+  // }, 666)
 }
 
 export default monitorWeb3

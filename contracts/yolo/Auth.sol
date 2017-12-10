@@ -1,6 +1,6 @@
-pragma solidity 0.4.18;
+pragma solidity ^0.4.18;
 
-contract Authentication {
+contract Auth {
   struct User {
     bytes32 firstName;
     bytes32 lastName;
@@ -86,19 +86,19 @@ contract Authentication {
     Updated(msg.sender, firstName, lastName, email);
   }
 
-  function profile(bytes32 profile)
+  function profile(bytes32 _profile)
     public
     onlyExistingUser
     returns(bool) 
   {
-    users[msg.sender].profile = profile
+    users[msg.sender].profile = _profile;
   }
 
-  function picture(bytes32 picture)
+  function picture(bytes32 _picture)
     public
     onlyExistingUser
     returns(bool)
   {
-    users[msg.sender].picture = picture
+    users[msg.sender].picture = _picture;
   }
 }

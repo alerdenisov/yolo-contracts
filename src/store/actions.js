@@ -1,6 +1,6 @@
 import { ACTION_TYPES, MUTATION_TYPES } from '../util/constants'
 import getWeb3 from '../util/web3/getWeb3'
-import monitorWeb3 from '../util/web3/monitorWeb3'
+// import monitorWeb3 from '../util/web3/monitorWeb3'
 
 const autoActions = Object.keys(ACTION_TYPES).reduce((acc, key) => {
   acc[ACTION_TYPES[key]] = function ({ commit }, ...args) {
@@ -18,10 +18,13 @@ export default {
       // Try to initialize web3
       getWeb3
       .then((result) => {
+        console.log('web3 result', result)
         commit(MUTATION_TYPES.REGISTER_WEB3_INSTANCE, {
           result,
           callback: (state) => {
-            monitorWeb3(state)
+            console.log('web3 register callback')
+            // monitorWeb3(state)
+            console.log('test')
             resolve()
           }
         })
@@ -36,7 +39,7 @@ export default {
               web3Error: e.err
             },
             callback: (state) => {
-              monitorWeb3(state)
+              // monitorWeb3(state)
               resolve(result)
             }
           })

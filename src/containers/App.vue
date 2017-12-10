@@ -1,17 +1,24 @@
 <template lang="pug">
-  div
-    h1 Hello {{ coinbase }}
-    router-view
+  #app.app(style='width: 100%')
+    app-header.app__header(:user='user')
+    app-body.app__body(:user='user')
 </template>
 
 <script>
+import AppHeader from './Header'
+import AppBody from './Body'
 import { mapState, mapActions } from 'vuex'
 import { ACTION_TYPES } from '../util/constants'
+import Auth from '~/src/js/contracts/Auth'
 
 require('normalize.css')
 
 export default {
   name: 'App',
+  components: {
+    AppHeader,
+    AppBody
+  },
   computed: {
     ...mapState({
       hasInjectedWeb3: state => state.web3.isInjected,
@@ -22,7 +29,10 @@ export default {
       coinbase: state => state.web3.coinbase,
       currentRoute: state => state.currentRoute,
       user: state => state.user
-    })
+    }),
+    isLoggedIn () {
+      return this.$store.state.user.isLoggedIn
+    }
   },
   methods: {
     ...mapActions([
@@ -30,16 +40,33 @@ export default {
       ACTION_TYPES.UPDATE_USER_BLOCKCHAIN_STATUS
     ])
   },
-  beforeCreate: function () {
-    this.$store.dispatch(ACTION_TYPES.REGISTER_WEB3_INSTANCE)
-    .then(() => {
-      this.$store.dispatch(ACTION_TYPES.UPDATE_USER_BLOCKCHAIN_STATUS)
-    })
-    .catch((result) => {
-      console.log("We've encountered problems with your Web3 connection")
-    })
+
+  watch: {
+    async hasInjectedWeb3 (has) {
+      if (has) {
+        if (!this.isLoggedIn) {
+          try {
+            const userData = await Auth.login(this.$store.state)
+            await this[ACTION_TYPES.LOGIN](userData)
+          } catch (error) {
+          }
+
+          if (!this.user.isLoggedIn) {
+            this.$router.push('/')
+          } else {
+            this.$router.push('/dashboard')
+          }
+        }
+      }
+    }
   },
-  created: function () {
+
+  async beforeCreate () {
+    await this.$store.dispatch(ACTION_TYPES.REGISTER_WEB3_INSTANCE)
+    await this.$store.dispatch(ACTION_TYPES.UPDATE_USER_BLOCKCHAIN_STATUS)
+  },
+
+  async created () {
     this[ACTION_TYPES.CHANGE_CURRENT_ROUTE_TO](this.$route)
   }
 }
@@ -63,6 +90,22 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  &__header {}
+  &__body {
+    flex-grow: 1;
+  }
+}
+
+.el-header {
+  padding: 0;
 }
 </style>
 
